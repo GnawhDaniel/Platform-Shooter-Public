@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealthPack : MonoBehaviour
 {
-    private float toHeal = 15.0f;
+    private float toHeal = 25.0f;
 
     private void Start()
     {

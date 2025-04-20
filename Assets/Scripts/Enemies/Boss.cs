@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour
     private Attacks[] attacks = {Attacks.BulletWheelAttack, Attacks.IcicleAttack};
     private Attacks currentAttack;
     private float attackTimer;
-    private float attackDuration = 60f;
+    private float attackDuration = 25f;
 
     private bool spawnedIce = false;
 
@@ -139,7 +139,7 @@ public class Boss : MonoBehaviour
         
         for (int i = 0; i < 3; i++)
         {
-            Vector3 newPosition = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-4.0f, 2f), 1);
+            Vector3 newPosition = new Vector3(UnityEngine.Random.Range(-10f, 10f), UnityEngine.Random.Range(-4.0f, 2f), 0);
             GameObject icicleObject = Instantiate(iciclePrefab.gameObject, transform.position + newPosition, Quaternion.identity);
         }
 

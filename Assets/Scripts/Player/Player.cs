@@ -10,15 +10,18 @@ public class Player : MonoBehaviour
     [SerializeField] private float walkSpeed = 4;  // Speed when walking
     [SerializeField] private Transform targetTransform; // Target for aiming
     [SerializeField] private Slider healthDisplay; // UI element for health display
+    [SerializeField] private float maxHealth; // Maximum health
 
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheckTransform; // Transform to check if player is grounded
     [SerializeField] private LayerMask playerMask; // Layer mask for player collision
     [SerializeField] private LayerMask mouseAimMask; // Layer mask for mouse aiming
 
+    [Header("Game Over")]
+    [SerializeField] private Pause gameOverPanel; // Panel to show when player dies
+
     // Internal Variables (Not visible in Inspector)
     private float health; // Player's health
-    [SerializeField] private float maxHealth; // Maximum health
     private bool jumpKeyWasPressed = false; // Tracks if jump key was pressed
     private bool sprintKeyHold = false; // Tracks if sprint key is held
     private float horizontalInput; // Horizontal movement input
@@ -124,7 +127,7 @@ public class Player : MonoBehaviour
         health += hp;
         if (health > 100)
         {
-            health = 100;
+            health = maxHealth;
         }
     }
 
@@ -134,6 +137,7 @@ public class Player : MonoBehaviour
         healthDisplay.value = 0;
         Destroy(gameObject);
         Destroy(healthDisplay.gameObject);
+        gameOverPanel.PauseGame();
     }
 
     // Handle collision with projectiles

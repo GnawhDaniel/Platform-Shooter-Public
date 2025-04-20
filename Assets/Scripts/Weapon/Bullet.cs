@@ -40,6 +40,11 @@ public class Bullet : Projectile
         if (collision.gameObject.GetComponent<BoxCollider>())
         {
             Destroy(gameObject);
+
+        }
+        else if (collision.gameObject.GetComponent<Bullet>())
+        {
+            Destroy(gameObject);
         }
     }
 }

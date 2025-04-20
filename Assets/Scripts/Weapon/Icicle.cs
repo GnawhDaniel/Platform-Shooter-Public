@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Icicle : Projectile
 {
-    [SerializeField] private float speed = 5f; // Speed of the icicle
-
+    [SerializeField] private float speed = 3.5f; // Speed of the icicle
+    [SerializeField] private float maxHealth = 10f; // Maximum health of the icicle
+    private float health; // Health of the icicle
     private Transform player; // Reference to the player transform
     private float createdTime;
 
@@ -12,6 +13,7 @@ public class Icicle : Projectile
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        health = maxHealth; // Initialize health
         GameObject _player = GameObject.Find("Player");
         damage = 25f;
 
@@ -28,7 +30,10 @@ public class Icicle : Projectile
         // If the icicle is older than 5 seconds, shoot in forward direction
         if (!isShooting && (Time.time - createdTime > 2))
         {
-            transform.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+            //rigidbody.isKinematic = false; // Set the Rigidbody to be non-kinematic
+            rigidbody.AddForce(transform.forward * speed, ForceMode.Impulse);
             isShooting = true;
         }
         // If the icicle is older than 10 seconds, destroy it
@@ -57,6 +62,15 @@ public class Icicle : Projectile
         }
     }
 
+    private void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Breakable"))
@@ -76,7 +90,14 @@ public class Icicle : Projectile
                 player.TakeDamage(damage);
             }
         }
+        else if (collision.gameObject.CompareTag("Projectile"))
+        {
+            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            TakeDamage(projectile.GetDamage());
+            return;
+        }
         Destroy(gameObject);
+
     }
 
 }

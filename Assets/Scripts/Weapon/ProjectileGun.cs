@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UIElements;
 
 public class ProjectileGun : MonoBehaviour
 {
@@ -90,7 +91,8 @@ public class ProjectileGun : MonoBehaviour
         Vector3 directionWithSpread = direction + new Vector3(x, y, 0);
 
         // Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, sourcePoint.position, Quaternion.identity);
+        Vector3 position = new Vector3(sourcePoint.position.x, sourcePoint.position.y, 0);
+        GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
         // Set bullet origin
         currentBullet.GetComponent<Bullet>().SetOriginShooter(gameObject.transform.root.gameObject);
 

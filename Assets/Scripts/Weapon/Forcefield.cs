@@ -7,7 +7,7 @@ public class Forcefield : MonoBehaviour
     private float maxEnergy = 100f;
     private float energyRegen = 5f; // Per second
 
-    private float cooldownTime = 3f; // Time to wait before being able to use the forcefield again
+    private float cooldownTime = 0f; // Time to wait before being able to use the forcefield again
     private float timeLastUsed;
 
     private bool availableToUse = true;
