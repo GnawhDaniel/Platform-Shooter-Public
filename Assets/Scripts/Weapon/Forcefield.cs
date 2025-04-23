@@ -67,6 +67,16 @@ public class Forcefield : MonoBehaviour
        
     }
 
+    public void DeductEnergy(float amount)
+    {
+        energy -= amount;
+        if (energy < 0)
+        {
+            energy = 0;
+            availableToUse = false;
+        }
+    }
+
     public void DisableForcefield()
     {
         // Disable visual parts

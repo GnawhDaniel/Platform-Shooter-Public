@@ -4,6 +4,7 @@ public class ForcefieldController : MonoBehaviour
 {
     [SerializeField] private Forcefield forcefield; // Reference to the forcefield object
     private bool forcefieldKeyHold = false; // Tracks if forcefield is active
+    private bool buttonDown = false; // Tracks if the button is pressed
 
     // Update is called once per frame
     void Update()
@@ -36,10 +37,17 @@ public class ForcefieldController : MonoBehaviour
         if (forcefieldKeyHold && forcefield.IsAvailable())
         {
             forcefield.EnableForcefield();
+            if (buttonDown == false)
+            {
+                // Deduct set amount of energy
+                forcefield.DeductEnergy(15);
+            }
+            buttonDown = true;
         }
         else
         {
             forcefield.DisableForcefield();
+            buttonDown = false;
         }
     }
 }

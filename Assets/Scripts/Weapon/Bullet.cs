@@ -6,13 +6,14 @@ public class Bullet : Projectile
 {
     [SerializeField] private float maxDistance = 10f;
     private Vector3 startPos;
-    private GameObject originShooter;
+    private GameObject originShooter = null;
 
 
     private void Start()
     {
         startPos = transform.position;
         damage = 10f;
+        //originShooter = null;
     }
 
     public void SetOriginShooter(GameObject shooter)

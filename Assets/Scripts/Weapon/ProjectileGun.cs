@@ -6,31 +6,39 @@ using UnityEngine.UIElements;
 public class ProjectileGun : MonoBehaviour
 {
     // Bullet
-    public GameObject bullet;
+    [Header("Bullet")]
+    [SerializeField] protected GameObject bullet;
 
+    [Header("Bullet Force")]
     // Bullet Force
-    public float shootForce, upwardForce;
+    [SerializeField] protected float shootForce, upwardForce;
 
     // Stats
-    public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
-    public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
-    
-    public int bulletsLeft, bulletsShot;
+    [Header("Gun Stats")]
+    [SerializeField] protected float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
+    [SerializeField] protected int magazineSize, bulletsPerTap;
+    [SerializeField] protected bool allowButtonHold;
+
+    // State
+    [Header("State")]
+    [SerializeField] protected int bulletsLeft, bulletsShot;
 
     // Bools
-    public bool shooting, readyToShoot, reloading;
+    protected bool shooting, readyToShoot, reloading;
 
     // Reference
-    public Transform sourcePoint;
-    public Transform attackPoint;
+    [Header("References")]
+    [SerializeField] protected Transform sourcePoint;
+    [SerializeField] protected Transform attackPoint;
 
     // Graphics
-    public GameObject muzzleFlash;
-    public TextMeshProUGUI ammunitionDisplay;
+    [Header("Graphics")]
+    [SerializeField] protected GameObject muzzleFlash;
+    [SerializeField] protected TextMeshProUGUI ammunitionDisplay;
 
     // Bugfix 
-    public bool allowInvoke = true;
+    [Header("Bugfix")]
+    [SerializeField] protected bool allowInvoke = true;
 
     private void Awake()
     {

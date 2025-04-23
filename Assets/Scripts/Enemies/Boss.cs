@@ -126,6 +126,8 @@ public class Boss : MonoBehaviour
                 // Create a bullet
                 GameObject currentBullet = Instantiate(bullet, weapon.position, Quaternion.identity);
                 currentBullet.GetComponent<Rigidbody>().AddForce(weapon.forward * shootForce, ForceMode.Impulse);
+                currentBullet.GetComponent<Bullet>().SetOriginShooter(gameObject.transform.root.gameObject);
+
 
             }
             Invoke("ResetShot", timeBetweenShooting);

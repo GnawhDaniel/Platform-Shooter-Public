@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class Enemy : ProjectileGun
 {
-    [SerializeField] private HealthPack healthPackPrefab;
-    private Transform hand;
-    private double health = 100;
 
+    [Header("Enemy Stats")]
+    [SerializeField] private HealthPack healthPackPrefab;
+    [SerializeField] private double maxHealth = 50f;
+    
+    private double health;
+    private Transform hand;
     private LayerMask ignoreLayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Transform player = GameObject.Find("Player").transform;
+        health = maxHealth;
 
         hand = transform.Find("Hand");
         readyToShoot = true;
